@@ -17,7 +17,7 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts(string? brand
         , string? type, string? sort)
         {
-            var spec = new ProductSpecification(brand, type);
+            var spec = new ProductSpecification(brand, type, sort);
             var products = await repo.ListAsync(spec);
             return Ok(products);
         }
@@ -83,19 +83,16 @@ namespace API.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<string>> GetBrands()
         {
-            // TO DO Implement method
-            // return Ok(await repo.GetBrandsAsync());
-            return Ok();
+            var spec = new BrandListSpecification();
+            return Ok(await repo.ListAsync(spec));
         }
 
 
         [HttpGet("types")]
         public async Task<ActionResult<string>> GetTypes()
         {
-            // TO DO Implement method
-            // return Ok(await repo.GetTypesAsync());
-
-            return Ok();
+            var spec = new TypeListSpecification();
+            return Ok(await repo.ListAsync(spec));
         }
 
         private bool ProductExists(int id)
