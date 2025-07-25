@@ -26,7 +26,15 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddCors();
+builder.Services.AddCors(options=>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://loclahost:4200", "https://loclahost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
 //Everything before this is service
 var app = builder.Build();
@@ -40,8 +48,8 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
-    .WithOrigins("http://loclahost:4200", "https://loclahost:4200"));
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
+    .WithOrigins("http://localhost:4200","https://localhost:4200"));
 
 app.MapControllers();
 
