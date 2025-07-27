@@ -20,7 +20,6 @@ namespace API.Controllers
             var count = await repo.CountAsync(spec);            
 
             var pagination = new Pagination<T>(pageIndex, pageSize, count, items);
-            pagination.SetPageIndex();
             return Ok(pagination);
         }
     }

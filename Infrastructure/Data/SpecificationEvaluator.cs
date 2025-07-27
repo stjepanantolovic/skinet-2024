@@ -33,10 +33,7 @@ namespace Infrastructure.Data
 
             if (spec.IsPaginationEnabled)
             {
-                var count = query.Count();
-                var take = spec.Take > count ? count : spec.Take;
-                var skip = !(spec.Skip < count) ? 0 : spec.Skip;
-                query = query.Skip(skip).Take(take);
+                query = query.Skip(spec.Skip).Take(spec.Take);
             }
 
             return query;
