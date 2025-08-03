@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'app-test-error',
-  imports: [MatButton, MatCard],
+  imports: [MatButton],
   templateUrl: './test-error.component.html',
   styleUrl: './test-error.component.scss'
 })

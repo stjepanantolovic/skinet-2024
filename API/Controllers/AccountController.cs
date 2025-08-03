@@ -31,8 +31,11 @@ namespace API.Controllers
                 {
                     ModelState.AddModelError(error.Code, error.Description);
                 }
+
+                return ValidationProblem();
             }
-            return ValidationProblem();
+
+            return Ok();
         }
 
         [Authorize]
@@ -58,11 +61,11 @@ namespace API.Controllers
                 user.FirstName,
                 user.LastName,
                 user.Email,
-                Address= user.Address?.ToDto()
+                Address = user.Address?.ToDto()
             });
         }
 
-        [HttpGet]
+        [HttpGet("auth-status")]
         public ActionResult GetAuthState()
         {
             return Ok(new
