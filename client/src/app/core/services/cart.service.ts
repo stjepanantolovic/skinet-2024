@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Cart, CartItem } from '../../shared/models/cart';
 import { Product } from '../../shared/models/product';
 import { map } from 'rxjs';
+import { DelibveryMethod } from '../../shared/models/deliveryMethod';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +13,22 @@ export class CartService {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   cart = signal<Cart | null>(null);
+
   itemCount = computed(() => {
     return this.cart()?.items.reduce((sum, item) => sum + item.quantity, 0)
   })
 
+  selectedDelivery = signal<DelibveryMethod | null>(null);
+
   totals = computed(() => {
     const cart = this.cart();
+    const delivery = this.selectedDelivery();
     if (!cart) {
       return null;
     }
 
     const subtotal = cart.items.reduce((sum, item) => sum + item.quantity * item.price, 0)
-    const shipping = 0;
+    const shipping = delivery ? delivery.price : 0;
     const discount = 0;
     return {
       subtotal,
@@ -43,8 +48,12 @@ export class CartService {
   }
 
   setCart(cart: Cart) {
+    // console.log('etCart(cart: Cart: ');
     return this.http.post<Cart>(this.baseUrl + 'cart', cart).subscribe({
-      next: cart => this.cart.set(cart)
+      next: cart => {
+        this.cart.set(cart);
+        // console.log('CartService.cart.set(cart) - cart: ', cart)
+      }
     })
   }
 
@@ -71,7 +80,7 @@ export class CartService {
         cart.items.splice(index, 1);
       }
       if (cart.items.length === 0) {
-        this.deleteCart(cart.id);
+        this.deleteCart();
       } else {
         this.setCart(cart);
       }
@@ -115,8 +124,8 @@ export class CartService {
     return cart;
   }
 
-  deleteCart(id: string) {
-    return this.http.delete(this.baseUrl + 'cart?id=' + id).subscribe({
+ deleteCart() {
+    this.http.delete(this.baseUrl  + 'cart?id=' + this.cart()?.id).subscribe({
       next: () => {
         localStorage.removeItem('cart_id');
         this.cart.set(null);
