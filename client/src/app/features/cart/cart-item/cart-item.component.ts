@@ -29,7 +29,7 @@ export class CartItemComponent {
   }
 
   removeItemFromCart() {
-    console.log('removeItemFromCart',this.item().quantity)
+    // console.log('removeItemFromCart',this.item().quantity)
     this.cartService.removeItemFromCart(this.item().productId, this.item().quantity)
   }
 }
