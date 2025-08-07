@@ -77,7 +77,6 @@ export class ShopComponent {
 
   onSearchChange(){
     this.shopParams.pageNumber=1;
-    console.log('Searching');    
     this.getProducts();
   }
 

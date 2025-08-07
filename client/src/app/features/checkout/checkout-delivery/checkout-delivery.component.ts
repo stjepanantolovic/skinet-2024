@@ -21,26 +21,15 @@ export class CheckoutDeliveryComponent implements OnInit {
   deliveryComplete = output<boolean>();
 
   ngOnInit(): void {
-    // console.log(' onOninit cdComp cart deliveryMethodId ', this.cartService.cart()?.deliveryMethodID);
-    // console.log(' onOninit cdComp cart', this.cartService.cart())
     this.checkoutService.getDeliveryMethods().subscribe({
       next: methods => {
-        // console.log(' onOninit cdComp delivery methods: ', methods);
-        // console.log(' onOninit cdComp after get delivery methods subscribe cart deliveryMethodId: ', this.cartService.cart()?.deliveryMethodID);
-        // let copy = Object.assign({}, this.cartService.cart());
-        // console.log(' onOninit cdComp after get delivery methods subscribe cart COPY: ', copy);
-        // console.log(' onOninit cdComp after get delivery methods subscribe cart: ', this.cartService.cart());        
-        if (this.cartService.cart()?.deliveryMethodID) {
-          // console.log('deliveryMethodID in Checkout delivery component is TRUE', this.cartService.cart()?.deliveryMethodID)
-          const method = methods.find(x => x.id == this.cartService.cart()?.deliveryMethodID);
+        if (this.cartService.cart()?.deliveryMethodId) {
+          const method = methods.find(x => x.id == this.cartService.cart()?.deliveryMethodId);
           if (method) {
             this.cartService.selectedDelivery.set(method);
             this.deliveryComplete.emit(true);
           }
-        } 
-        // else {
-        //   console.log('deliveryMethodID in Checkout delivery component is false', this.cartService.cart()?.deliveryMethodID)
-        // }
+        }
       }
     });
   }
@@ -49,7 +38,7 @@ export class CheckoutDeliveryComponent implements OnInit {
     this.cartService.selectedDelivery.set(method);
     const cart = this.cartService.cart();
     if (cart) {
-      cart.deliveryMethodID = method.id;
+      cart.deliveryMethodId = method.id;
       this.cartService.setCart(cart);
       this.deliveryComplete.emit(true);
     }

@@ -54,20 +54,6 @@ export class StripeService {
     return this.paymenElement;
   }
 
-  async createConfirmationToken() {
-    const stripe = await this.getStripeInstance();
-    const elements = await this.initializeElements();
-    const result = await elements.submit();
-    if (result.error) {
-      throw new Error(result.error?.message);
-    }
-    if (stripe) {
-      return await stripe.createConfirmationToken({ elements });
-    } else {
-      throw new Error('Stripe not available');
-    }
-  }
-
   async createAddressElement() {
     if (!this.addressElement) {
       const elements = await this.initializeElements();
@@ -102,6 +88,21 @@ export class StripeService {
     return this.addressElement;
   }
 
+  
+  async createConfirmationToken() {
+    const stripe = await this.getStripeInstance();
+    const elements = await this.initializeElements();
+    const result = await elements.submit();
+    if (result.error) {
+      throw new Error(result.error?.message);
+    }
+    if (stripe) {
+      return await stripe.createConfirmationToken({ elements });
+    } else {
+      throw new Error('Stripe not available');
+    }
+  }
+
   async confirmPayment(confirmationToken: ConfirmationToken) {
     const stripe = await this.getStripeInstance();
     const elements = await this.initializeElements();
@@ -133,7 +134,6 @@ export class StripeService {
     }
     return this.http.post<Cart>(this.baseUrl + 'payments/' + cart.id, {}).pipe(
       map(cart => {
-        // console.log('createOrUpdatePaymentIntent()- after posting payments/' + cart.id + 'cart response: ', cart);
         this.cartService.setCart(cart);
         return cart;
       })

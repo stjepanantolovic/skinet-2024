@@ -102,7 +102,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   async onStepChange(event: StepperSelectionEvent) {
-    console.log('selectedIndex: ', event.selectedIndex);
     if (event.selectedIndex === 1) {
       if (this.saveAddress) {
         const address = await this.getAdressFromStripeAddress()
@@ -118,6 +117,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       await this.getConfirmationToken();
     }
   }
+
 
   async confirmPayment(stepper: MatStepper) {
     this.loading = true;
@@ -159,7 +159,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   onSaveAddresCheckboxChange(event: MatCheckboxChange) {
-    console.log('onSaveAddresCheckboxChange event: ', event);
     this.saveAddress = event.checked;
   }
 

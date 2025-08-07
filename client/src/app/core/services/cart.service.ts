@@ -23,11 +23,13 @@ export class CartService {
   totals = computed(() => {
     const cart = this.cart();
     const delivery = this.selectedDelivery();
+
     if (!cart) {
       return null;
     }
 
     const subtotal = cart.items.reduce((sum, item) => sum + item.quantity * item.price, 0)
+    
     const shipping = delivery ? delivery.price : 0;
     const discount = 0;
     return {
@@ -40,7 +42,7 @@ export class CartService {
 
   getCart(id: string) {
     return this.http.get<Cart>(this.baseUrl + 'cart?id=' + id).pipe(
-      map(cart => {
+      map(cart => {        
         this.cart.set(cart);
         return cart;
       })
@@ -48,11 +50,9 @@ export class CartService {
   }
 
   setCart(cart: Cart) {
-    // console.log('etCart(cart: Cart: ');
     return this.http.post<Cart>(this.baseUrl + 'cart', cart).subscribe({
       next: cart => {
         this.cart.set(cart);
-        // console.log('CartService.cart.set(cart) - cart: ', cart)
       }
     })
   }
