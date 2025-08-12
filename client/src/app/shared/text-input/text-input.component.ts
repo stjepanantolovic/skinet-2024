@@ -1,7 +1,5 @@
 import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
-import { MatButton } from '@angular/material/button';
-import { MatCard } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 
@@ -10,9 +8,7 @@ import { MatInput } from '@angular/material/input';
   imports: [
     ReactiveFormsModule,
     MatFormField,
-    MatButton,
     MatLabel,
-    MatCard,
     MatInput,
     MatError
 

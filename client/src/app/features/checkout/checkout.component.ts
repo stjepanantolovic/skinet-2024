@@ -15,7 +15,9 @@ import { CheckoutDeliveryComponent } from "./checkout-delivery/checkout-delivery
 import { CheckoutReviewComponent } from "./checkout-review/checkout-review.component";
 import { CartService } from '../../core/services/cart.service';
 import { CurrencyPipe, JsonPipe } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { OrderTocreate, ShippingAddress } from '../../shared/models/order';
+import { OrderService } from '../../core/services/order.service';
 
 
 @Component({
@@ -40,6 +42,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private stripeService = inject(StripeService);
   private accountService = inject(AccountService);
+  private orderService = inject(OrderService);
   cartService = inject(CartService);
   addressElement?: StripeAddressElement;
   paymentElement?: StripePaymentElement;
@@ -102,14 +105,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   async onStepChange(event: StepperSelectionEvent) {
+    console.log('event.selectedIndex ===', event.selectedIndex);
     if (event.selectedIndex === 1) {
       if (this.saveAddress) {
-        const address = await this.getAdressFromStripeAddress()
+        const address = await this.getAdressFromStripeAddress() as Address;
         address && firstValueFrom(this.accountService.updateAddress(address));
       }
     }
 
     if (event.selectedIndex === 2) {
+      console.log('event.selectedIndex === 2');
       await firstValueFrom(this.stripeService.createOrUpdatePaymentIntent());
     }
 
@@ -118,18 +123,28 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
   }
 
-
   async confirmPayment(stepper: MatStepper) {
     this.loading = true;
     try {
       if (this.confirmationToken) {
         const result = await this.stripeService.confirmPayment(this.confirmationToken);
-        if (result.error) {
+
+        if (result.paymentIntent?.status === 'succeeded') {
+          const order = await this.createOrderModel();
+          console.log('Create order in API')
+          const orderResult = await firstValueFrom(this.orderService.createOrder(order));
+          if (orderResult) {
+            this.orderService.orderComplete = true;
+            this.cartService.deleteCart();
+            this.cartService.selectedDelivery.set(null);
+            this.router.navigateByUrl('checkout/success');
+          } else {
+            throw new Error('Order creation failed');
+          }
+        } else if (result.error) {
           throw new Error(result.error.message);
         } else {
-          this.cartService.deleteCart();
-          this.cartService.selectedDelivery.set(null);
-          this.router.navigateByUrl('checkout/success');
+          throw new Error('Something went wrong');
         }
       }
     } catch (error: any) {
@@ -140,12 +155,37 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  private async getAdressFromStripeAddress(): Promise<Address | null> {
+  private async createOrderModel(): Promise<OrderTocreate> {
+    const cart = this.cartService.cart();
+    const shippingAddress = await this.getAdressFromStripeAddress() as ShippingAddress;
+    const card = this.confirmationToken?.payment_method_preview.card;
+
+    if (!cart?.id || !cart.deliveryMethodId || !card || !shippingAddress) {
+      throw new Error("Probelm creating order");
+    }
+
+    const order: OrderTocreate = {
+      cartId: cart.id,
+      paymentSummary: {
+        last4: +card.last4,
+        brand: card.brand,
+        expMonth: card.exp_month,
+        expYear: card.exp_year
+      },
+      deliveryMethodId: cart.deliveryMethodId,
+      shippingAddress: shippingAddress
+    }
+
+    return order;
+  }
+
+  private async getAdressFromStripeAddress(): Promise<Address | ShippingAddress | null> {
     const result = await this.addressElement?.getValue();
     const address = result?.value.address;
 
     if (address) {
       return {
+        name: result.value.name,
         line1: address.line1,
         line2: address.line2 || undefined,
         city: address.city,

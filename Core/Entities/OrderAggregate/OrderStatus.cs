@@ -3,8 +3,9 @@ namespace Core.Entities.OrderAggregate
     public enum OrderStatus
     {
         Pending,
-        PaymentRceived,
-        PaymentFailed
-
+        PaymentReceived,
+        PaymentFailed,
+        PaymentMismatch,
+        Refunded
     }
 }

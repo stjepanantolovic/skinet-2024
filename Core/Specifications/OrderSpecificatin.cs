@@ -23,5 +23,11 @@ namespace Core.Specifications
             AddInclude("OrderItems");
             AddInclude("DeliveryMethod");
         }
+
+        public OrderSpecification(string paymentintentId, bool isPaymentIntent) : base(x => x.PaymentIntentId == paymentintentId)
+        {
+            AddInclude("OrderItems");
+            AddInclude("DeliveryMethod");
+        }
     }
 }

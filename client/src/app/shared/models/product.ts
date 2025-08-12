@@ -9,7 +9,3 @@ export type Product = {
     quantityInStock: number;
 }
 
-export interface MobileDe {
-    status: number,
-    message: string
-  }

@@ -111,7 +111,6 @@ export class StripeService {
       throw new Error(result.error?.message);
     }
 
-
     const clientSecret = this.cartService.cart()?.clientSecret;
 
     if (stripe && clientSecret) {
@@ -127,8 +126,9 @@ export class StripeService {
     }
   }
 
-  createOrUpdatePaymentIntent() {
+  createOrUpdatePaymentIntent() {    
     const cart = this.cartService.cart();
+    console.log('createOrUpdatePaymentIntent for cartId: ', cart?.id);
     if (!cart) {
       throw new Error("Problem with cart");
     }
