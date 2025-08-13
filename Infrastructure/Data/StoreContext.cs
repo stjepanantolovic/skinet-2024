@@ -19,17 +19,6 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.LogTo(s => System.Diagnostics.Debug.WriteLine(s));
-            optionsBuilder.EnableSensitiveDataLogging(true);
-
-        }
-
-
-
+        }    
     }
 }
