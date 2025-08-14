@@ -88,7 +88,7 @@ export class StripeService {
     return this.addressElement;
   }
 
-  
+
   async createConfirmationToken() {
     const stripe = await this.getStripeInstance();
     const elements = await this.initializeElements();
@@ -126,15 +126,15 @@ export class StripeService {
     }
   }
 
-  createOrUpdatePaymentIntent() {    
+  createOrUpdatePaymentIntent() {
     const cart = this.cartService.cart();
     console.log('createOrUpdatePaymentIntent for cartId: ', cart?.id);
     if (!cart) {
       throw new Error("Problem with cart");
     }
     return this.http.post<Cart>(this.baseUrl + 'payments/' + cart.id, {}).pipe(
-      map(cart => {
-        this.cartService.setCart(cart);
+      map(async cart => {
+        await firstValueFrom(this.cartService.setCart(cart));
         return cart;
       })
     );
