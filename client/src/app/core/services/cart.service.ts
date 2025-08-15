@@ -132,5 +132,5 @@ export class CartService {
         this.cart.set(null);
       }
     })
-  }
+  }  
 }
