@@ -1,0 +1,60 @@
+<div class="p-4">
+  <h2 class="text-xl font-bold mb-4">Upload Images</h2>
+
+  <input type="file" (change)="onFilesSelected($event)" multiple class="mb-2"/>
+  <button mat-raised-button color="primary" (click)="uploadFiles()" [disabled]="uploading">
+    {{ uploading ? 'Uploading...' : 'Upload' }}
+  </button>
+
+  <table mat-table [dataSource]="uploadedImages" class="mt-4 min-w-full mat-elevation-z8">
+
+    <!-- Index Column -->
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Preview Column -->
+    <ng-container matColumnDef="preview">
+      <th mat-header-cell *matHeaderCellDef>Preview</th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.url" alt="{{element.name}}" class="w-24"/>
+      </td>
+    </ng-container>
+
+    <!-- URL Column -->
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef>URL</th>
+      <td mat-cell *matCellDef="let element">
+        <a [href]="element.url" target="_blank" class="text-blue-600 underline">Open</a>
+      </td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="progress">
+      <th mat-header-cell *matHeaderCellDef>Progress</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-progress-bar mode="determinate" [value]="element.progress"></mat-progress-bar>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="warn" (click)="deleteImage(element)">Delete</button>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>

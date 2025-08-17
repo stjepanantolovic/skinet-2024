@@ -138,7 +138,7 @@ export class StripeService {
 
   createOrUpdatePaymentIntent() {
     const cart = this.cartService.cart();
-      console.log("stripeServce.createOrUpdatePaymentIntent)" );
+      console.log("stripeServce.createOrUpdatePaymentIntent). CART Current", cart );
     if (!cart) {
       throw new Error("Problem with cart");
     }

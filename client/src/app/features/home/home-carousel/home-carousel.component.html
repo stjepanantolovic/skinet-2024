@@ -1,0 +1,35 @@
+<div
+  class="pc-wrap max-w-screen-2xl mx-auto px-4"
+  (wheel)="onWheel($event)"
+  (keydown)="onKeydown($event)"
+  (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd($event)"
+  tabindex="0"
+  role="region"
+  aria-label="Home carousel"
+>
+  <p-carousel
+    #c
+    [value]="items"
+    [numVisible]="numVisible"
+    [numScroll]="numScroll"
+    [circular]="circular"
+    [showIndicators]="showIndicators"
+    [showNavigators]="showNavigators"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template pTemplate="item" let-p>
+  <div class="pc-slide">   <!-- NEW wrapper for safe spacing -->
+    <p-card class="pc-card">
+      <div class="pc-media">
+        <img [src]="p.image" [alt]="p.name" />
+      </div>
+      <div class="pc-body">
+        <div class="pc-name">{{ p.name }}</div>
+      </div>
+    </p-card>
+  </div>
+</ng-template>
+
+  </p-carousel>
+</div>

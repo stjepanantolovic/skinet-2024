@@ -10,6 +10,10 @@ import { InitService } from './core/services/init.service';
 import { lastValueFrom } from 'rxjs';
 import { authInterceptor } from './core/interceptors/auth-interceptor';
 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -34,6 +38,15 @@ export const appConfig: ApplicationConfig = {
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: { autoFocus: 'dialog', restoreFocus: true }
-    }
+    },
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }  
+      // optional globals:
+      // ripple: true,
+      // inputVariant: 'filled'
+    })
   ]
 };

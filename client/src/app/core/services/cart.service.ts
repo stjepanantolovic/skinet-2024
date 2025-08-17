@@ -50,8 +50,10 @@ export class CartService {
   }
 
   setCart(cart: Cart) {
+    console.log("cart service setting cart", cart);
     return this.http.post<Cart>(this.baseUrl + 'cart', cart).pipe(
       tap(cart => {
+        console.log("cart service setting cart response XXX", cart);
         this.cart.set(cart);
         return cart;
       }))
@@ -130,6 +132,7 @@ export class CartService {
       next: () => {
         localStorage.removeItem('cart_id');
         this.cart.set(null);
+        this.selectedDelivery.set(null);
       }
     })
   }  

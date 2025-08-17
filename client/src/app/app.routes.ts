@@ -16,6 +16,7 @@ import { CheckoutSuccessComponent } from './features/checkout/checkout-success/c
 import { OrderComponent } from './features/orders/order.component';
 import { OrderDetailComponent } from './features/orders/order-detail/order-detail.component';
 import { orderCompleteGuard } from './core/guards/order-complete-guard';
+import { ImageUploaderComponent } from './shared/components/image-uploader/image-uploader.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,5 +32,7 @@ export const routes: Routes = [
   { path: 'test-error', component: TestErrorComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
+  { path: 'upload', component: ImageUploaderComponent },
+  
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
