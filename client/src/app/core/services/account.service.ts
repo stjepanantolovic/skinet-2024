@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Address, User } from '../../shared/models/user';
 import { map, tap } from 'rxjs';
 import { SignalrService } from './signalr.service';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AccountService {
   private http = inject(HttpClient);
   currentUser = signal<User | null>(null);
   private signalRService = inject(SignalrService);
+  private cartService = inject(CartService);
 
   login(values: any) {
     let params = new HttpParams();
@@ -37,7 +39,10 @@ export class AccountService {
 
   logout() {
     return this.http.post(this.baseUrl + 'account/logout', {}).pipe(
-      tap(() => this.signalRService.stopHubConnection())
+      tap(() => {
+        this.signalRService.stopHubConnection();
+        this.cartService.deleteCart()
+      })
     );
   }
 

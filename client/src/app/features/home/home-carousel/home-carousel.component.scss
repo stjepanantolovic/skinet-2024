@@ -1,0 +1,82 @@
+:host { display: block; width: 100%; }
+
+/* Use the content as positioning context and keep side gutters (arrows align to this) */
+:host ::ng-deep .p-carousel { --p-carousel-content-gap: 0; }
+:host ::ng-deep .p-carousel .p-carousel-content {
+  position: relative;
+  padding: 0 .5rem;   /* arrows will sit at this inset */
+}
+
+/* Rounded TOP corners + clip */
+:host ::ng-deep .p-carousel .p-carousel-viewport {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Items: no padding/margins (don’t change track math) */
+:host ::ng-deep .p-carousel .p-carousel-item { padding: 0; }
+
+/* ------- Arrows INSIDE, centered, on the card edges (PrimeNG v20 classes) ------- */
+:host ::ng-deep .p-carousel .p-carousel-prev-button,
+:host ::ng-deep .p-carousel .p-carousel-next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: rgba(0,0,0,0.5);
+  border: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+// :host ::ng-deep .p-carousel .p-carousel-prev-button { left: .5rem; }
+// :host ::ng-deep .p-carousel .p-carousel-next-button { right: .5rem; }
+
+@media (max-width: 768px) {
+  :host ::ng-deep .p-carousel .p-carousel-prev-button { left: .75rem; }
+  :host ::ng-deep .p-carousel .p-carousel-next-button { right: .75rem; }
+}
+@media (min-width: 1024px) {
+  :host ::ng-deep .p-carousel .p-carousel-prev-button { left: 1.25rem; }
+  :host ::ng-deep .p-carousel .p-carousel-next-button { right: 1.25rem; }
+}
+
+
+/* ------- Spacing BETWEEN cards without touching outer edges ------- */
+.pc-slide { padding: 0 .35rem; }                                   /* gap */
+:host ::ng-deep .p-carousel .p-carousel-item:first-child .pc-slide { padding-left: 0; }
+:host ::ng-deep .p-carousel .p-carousel-item:last-child  .pc-slide { padding-right: 0; }
+
+/* Card + media fill */
+:host ::ng-deep .pc-card .p-card-body,
+:host ::ng-deep .pc-card .p-card-content { padding: 0; margin: 0; }
+
+.pc-card { display: flex; flex-direction: column; height: 100%; border-radius: .75rem; overflow: hidden; }
+.pc-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; }
+.pc-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.pc-body { padding: .75rem; }
+.pc-name { font-weight: 600; font-size: .9rem; color: #fff; }
+
+/* Indicators spacing */
+:host ::ng-deep .p-carousel .p-carousel-indicator-list { margin-top: .15rem; }
+
+/* Responsive: keep mobile size, make laptop cards shorter */
+@media (max-width: 768px) {
+  .pc-slide { padding: 0 .25rem; }
+  :host ::ng-deep .p-carousel .p-carousel-item:first-child .pc-slide { padding-left: 0; }
+  :host ::ng-deep .p-carousel .p-carousel-item:last-child  .pc-slide { padding-right: 0; }
+  .pc-media { aspect-ratio: 4 / 3; }
+}
+@media (min-width: 1024px) {
+  .pc-slide { padding: 0 .5rem; }
+  :host ::ng-deep .p-carousel .p-carousel-item:first-child .pc-slide { padding-left: 0; }
+  :host ::ng-deep .p-carousel .p-carousel-item:last-child  .pc-slide { padding-right: 0; }
+  .pc-media { aspect-ratio: 16 / 9; }  /* shorter on laptops/desktops */
+}

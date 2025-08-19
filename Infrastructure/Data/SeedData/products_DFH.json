@@ -1,0 +1,173 @@
+[
+  {
+    "Name": "Pepe Jeans  Door XXL",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 200,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755527111/images/images/KSK402_20250818142511.webp",
+    "Type": "Doors",
+    "Brand": "Pepe Jeans",
+    "QuantityInStock": 82
+  },
+  {
+    "Name": "Green Pepe Jeans Door",
+    "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
+    "Price": 150,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755527110/images/images/BVM10S_20250818142510.webp",
+    "Type": "Doors",
+    "Brand": "Pepe Jeans",
+    "QuantityInStock": 75
+  },
+  {
+    "Name": "Core Door",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 180,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755527058/images/images/STV119_20250818142418.jpg",
+    "Type": "Doors",
+    "Brand": "Manhattan",
+    "QuantityInStock": 3
+  },
+  {
+    "Name": "Net Core  Door",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 300,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755527056/images/images/BVM03P_20250818142415.jpg",
+    "Type": "Doors",
+    "Brand": "Manhattan",
+    "QuantityInStock": 52
+  },
+  {
+    "Name": "Luxury Door",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 250,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755527254/images/images/STV113_20250818142734.webp",
+    "Type": "Doors",
+    "Brand": "Luxury",
+    "QuantityInStock": 97
+  },
+  {
+    "Name": "Alpha Entry Door",
+    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 120,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755527251/images/images/HB01P_20250818142730.webp",
+    "Type": "Doors",
+    "Brand": "Alpha",
+    "QuantityInStock": 37
+  },
+  {
+    "Name": "Core Green Sofa",
+    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 10,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538237/images/images/image_437_20250818173036.jpg",
+    "Type": "Sofas",
+    "Brand": "Manhattan",
+    "QuantityInStock": 32
+  },
+  {
+    "Name": "Green Luxury Sofa",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 8,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538235/images/images/image_166_20250818173034.jpg",
+    "Type": "Sofas",
+    "Brand": "Luxury",
+    "QuantityInStock": 6
+  },
+  {
+    "Name": "Purple Luxury Sofa",
+    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 15,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538232/images/images/aaaa_20250818173031.jpg",
+    "Type": "Sofas",
+    "Brand": "Luxury",
+    "QuantityInStock": 17
+  },
+  {
+    "Name": "Beige Code Kitchen",
+    "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
+    "Price": 18,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755544938/images/images/Beigekitchen_20250818192216.webp",
+    "Type": "Kitchens",
+    "Brand": "Vienna",
+    "QuantityInStock": 74
+  },
+  {
+    "Name": "White Code Kitchen",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 15,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538459/images/images/Darkkitchen_20250818173418.png",
+    "Type": "Kitchens",
+    "Brand": "Vienna",
+    "QuantityInStock": 19
+  },
+  {
+    "Name": "Dark Luxury Kitchen",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
+    "Price": 16,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538462/images/images/Graykitchen_20250818173421.png",
+    "Type": "Kitchens",
+    "Brand": "Luxury",
+    "QuantityInStock": 77
+  },
+  {
+    "Name": "Gray Luxury Kitchen",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 14,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755545224/images/images/IMG-20250811-WA0029_20250818192703.webp",
+    "Type": "Kitchens",
+    "Brand": "Luxury",
+    "QuantityInStock": 45
+  },
+  {
+    "Name": "Exclusive Brown Chair",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 250,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755543998/images/images/image_296_20250818190637.webp",
+    "Type": "Chairs",
+    "Brand": "Exclusive",
+    "QuantityInStock": 49
+  },
+  {
+    "Name": "Core Purple Chair",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 199.99,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755543995/images/images/image_90_20250818190634.webp",
+    "Type": "Chairs",
+    "Brand": "Manhattan",
+    "QuantityInStock": 69
+  },
+  {
+    "Name": "Pepe Jeans Purple Chair",
+    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 150,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755543993/images/images/image_52_20250818190632.webp",
+    "Type": "Chairs",
+    "Brand": "Pepe Jeans",
+    "QuantityInStock": 35
+  },
+  {
+    "Name": "Pepe Jeans Blue Chair",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 180,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755543992/images/images/image_8_20250818190630.webp",
+    "Type": "Chairs",
+    "Brand": "Pepe Jeans",
+    "QuantityInStock": 27
+  },
+  {
+    "Name": "Window aluminum",
+    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 150,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538977/images/images/antracit-prozor-zoma_20250818174257.webp",
+    "Type": "Windows",
+    "Brand": "Wieneberger",
+    "QuantityInStock": 35
+  },
+  {
+    "Name": "Window PVC",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 180,
+    "PictureUrl": "https://res.cloudinary.com/dct9az8d1/image/upload/v1755538975/images/images/alu-prozori_20250818174254.jpg",
+    "Type": "Windows",
+    "Brand": "Troha-Dil",
+    "QuantityInStock": 27
+  }
+]

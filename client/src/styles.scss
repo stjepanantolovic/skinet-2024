@@ -1,33 +1,114 @@
-@use '@angular/material' as mat;
+/* styles.scss */
 
-// Customize the entire app. Change :root to your selector if you want to scope the styles.
-:root {
-  @include mat.button-overrides((filled-container-shape:'6px',
-      outlined-container-shape:'6px'
-    ));
-  @include mat.badge-overrides((background-color: blue));
+/* Do NOT import Material theming mixins if you keep a prebuilt theme.
+   Remove any previous `@use '@angular/material' as mat;` and `@include mat.*` lines. */
+
+/* PrimeIcons (keep if you use them) */
+@import "primeicons/primeicons.css";
+
+/* ---- Page backgrounds (your gradients) ---- */
+body {
+  background: white;
 }
 
+/* special class for Home */
+body.home-gradient {
+  background: linear-gradient(135deg, #f1eee7E6 0%, #c7b9a5E6 50%, #34322eE6 100%);
+  background-attachment: fixed; /* optional: nice feel on scroll */
+}
+
+header {
+  margin: 0;
+  background: linear-gradient(135deg, #f1eee7 0%, #d5c9b6 100%);
+  background-attachment: fixed;
+}
+
+/* ---- Frosted surfaces for Material cards & tables ----
+   Since prebuilt theme is pure CSS, we override with plain CSS + !important.
+   This ignores tokens/vars and just paints the surface as requested.
+*/
+
+/* Cards (all appearances) */
+.mat-mdc-card, mat-card {
+  background:  #f3f2ef !important; /* frosted white */
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06) !important;
+  /* outlined appearance needs a visible outline on light areas */
+  border: 1px solid rgba(52, 50, 46, 0.10) !important;
+}
+
+/* Optional “frosted” blur for capable browsers */
+@supports (backdrop-filter: blur(1px)) {
+  .mat-mdc-card, mat-card {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+}
+
+/* Tables */
+.mat-mdc-table {
+  background-color: #ffffff !important;   /* pure white */
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06) !important;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .mat-mdc-table {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+}
+
+/* Row hover (subtle) */
+.mat-mdc-row:hover {
+  background-color: #f5f5f5 !important;  /* light gray hover */
+}
+
+/* ---- Your utilities / tweaks ---- */
+
+/* Match button height to form-field input */
 button.match-input-height {
   height: var(--mat-form-field-container-height) !important;
 }
 
+/* Keep your notch tweak if you need it */
 .mdc.notched-outlined__notch {
-  border-right-style: none !important
+  border-right-style: none !important;
 }
 
-.snack-error{
-  @include mat.snack-bar-overrides((
-    button-color: white,
-    container-color: red,
-    supporting-text-color: white
-  ));
+/* Snackbars (plain CSS colors, since we’re not using SCSS mixins here) */
+.snack-error .mdc-snackbar__surface {
+  background: red !important;
+  color: white !important;
+}
+.snack-error .mdc-button__label {
+  color: white !important;
+}
+.snack-success .mdc-snackbar__surface {
+  background: green !important;
+  color: white !important;
+}
+.snack-success .mdc-button__label {
+  color: white !important;
 }
 
-.snack-success{
-  @include mat.snack-bar-overrides((
-    button-color: white,
-    container-color: green,
-    supporting-text-color: white
-  ));
+/* Optional dark-scheme polish */
+@media (prefers-color-scheme: dark) {
+  .mat-mdc-card, mat-card {
+   background-color: #f3f2ef !important;   /* soft warm off-white */
+  border-radius: 12px !important;
+  border: 1px solid rgba(52, 50, 46, 0.08) !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08) !important;
+  }
+  .mat-mdc-table {
+    background: #ece7df !important;
+    color: #f1eee7;
+  }
+  .mat-mdc-row:hover {
+    background-color: #f5f5f5 !important;  /* light gray hover */
+  }
 }
+
+.text-reset-dark { color: rgba(0,0,0,0.87) !important; }
+.text-reset-dark * { color: inherit !important; }

@@ -25,10 +25,12 @@ export class StripeService {
   }
 
   getStripeInstance() {
+    console.log("stripeSerice.getStripeInstance()");
     return this.stripePromise;
   }
 
   async initializeElements() {
+    console.log("stripeSerice.initializeElements()");
     if (!this.elements) {
       const stripe = await this.getStripeInstance();
       if (stripe) {
@@ -43,6 +45,8 @@ export class StripeService {
   }
 
   async createPaymentElement() {
+    console.log("stripeSerice.createPaymentElement()");
+
     if (!this.paymenElement) {
       const elements = await this.initializeElements();
       if (elements) {
@@ -55,6 +59,8 @@ export class StripeService {
   }
 
   async createAddressElement() {
+    console.log("stripeSerice.createAddressElement()");
+
     if (!this.addressElement) {
       const elements = await this.initializeElements();
       if (elements) {
@@ -90,6 +96,7 @@ export class StripeService {
 
 
   async createConfirmationToken() {
+    console.log("stripeSerice.createConfirmationToken()");
     const stripe = await this.getStripeInstance();
     const elements = await this.initializeElements();
     const result = await elements.submit();
@@ -104,6 +111,8 @@ export class StripeService {
   }
 
   async confirmPayment(confirmationToken: ConfirmationToken) {
+                    console.log("stripeSerice.confirmPayment()");
+
     const stripe = await this.getStripeInstance();
     const elements = await this.initializeElements();
     const result = await elements.submit();
@@ -114,6 +123,7 @@ export class StripeService {
     const clientSecret = this.cartService.cart()?.clientSecret;
 
     if (stripe && clientSecret) {
+      console.log("stripeServce.confirming payment  if (stripe && clientSecret)" );
       return await stripe.confirmPayment({
         clientSecret: clientSecret,
         confirmParams: {
@@ -128,13 +138,16 @@ export class StripeService {
 
   createOrUpdatePaymentIntent() {
     const cart = this.cartService.cart();
-    console.log('createOrUpdatePaymentIntent for cartId: ', cart?.id);
+      console.log("stripeServce.createOrUpdatePaymentIntent). CART Current", cart );
     if (!cart) {
       throw new Error("Problem with cart");
     }
     return this.http.post<Cart>(this.baseUrl + 'payments/' + cart.id, {}).pipe(
       map(async cart => {
         await firstValueFrom(this.cartService.setCart(cart));
+        console.log("RETURNED CART", cart)
+        console.log("RETURNED CART.clientSecret", cart.clientSecret)
+         console.log("RETURNED CART.paymentIntentId", cart.paymentIntentId)
         return cart;
       })
     );
