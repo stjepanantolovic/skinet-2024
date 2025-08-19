@@ -8,9 +8,13 @@
 
 /* ---- Page backgrounds (your gradients) ---- */
 body {
-  margin: 0;
+  background: white;
+}
+
+/* special class for Home */
+body.home-gradient {
   background: linear-gradient(135deg, #f1eee7E6 0%, #c7b9a5E6 50%, #34322eE6 100%);
-  background-attachment: fixed;
+  background-attachment: fixed; /* optional: nice feel on scroll */
 }
 
 header {
@@ -26,7 +30,7 @@ header {
 
 /* Cards (all appearances) */
 .mat-mdc-card, mat-card {
-  background: rgba(255, 255, 255, 0.8) !important; /* frosted white */
+  background:  #f3f2ef !important; /* frosted white */
   border-radius: 12px !important;
   box-shadow: 0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06) !important;
   /* outlined appearance needs a visible outline on light areas */
@@ -92,7 +96,7 @@ button.match-input-height {
 /* Optional dark-scheme polish */
 @media (prefers-color-scheme: dark) {
   .mat-mdc-card, mat-card {
-   background-color: #f9f7f3 !important;   /* soft warm off-white */
+   background-color: #f3f2ef !important;   /* soft warm off-white */
   border-radius: 12px !important;
   border: 1px solid rgba(52, 50, 46, 0.08) !important;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08) !important;
@@ -105,3 +109,6 @@ button.match-input-height {
     background-color: #f5f5f5 !important;  /* light gray hover */
   }
 }
+
+.text-reset-dark { color: rgba(0,0,0,0.87) !important; }
+.text-reset-dark * { color: inherit !important; }

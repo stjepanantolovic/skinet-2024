@@ -47,7 +47,7 @@ builder.Services.AddIdentityApiEndpoints<AppUser>()
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
-builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.AddScoped<IImageService, CloudinaryService>();
 builder.Services.AddSignalR();
 
 //Everything before this is service

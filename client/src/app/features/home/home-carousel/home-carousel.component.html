@@ -20,6 +20,9 @@
   >
     <ng-template pTemplate="item" let-p>
   <div class="pc-slide">   <!-- NEW wrapper for safe spacing -->
+     <a [routerLink]="['/shop']"
+       [queryParams]="{ types: p.name }"
+       class="block no-underline">
     <p-card class="pc-card">
       <div class="pc-media">
         <img [src]="p.image" [alt]="p.name" />
@@ -28,6 +31,7 @@
         <div class="pc-name">{{ p.name }}</div>
       </div>
     </p-card>
+     </a>
   </div>
 </ng-template>
 

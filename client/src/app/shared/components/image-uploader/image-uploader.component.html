@@ -1,26 +1,101 @@
+
+
+
 <div class="p-4">
   <h2 class="text-xl font-bold mb-4">Upload Images</h2>
 
-  <input type="file" (change)="onFilesSelected($event)" multiple class="mb-2"/>
-  <button mat-raised-button color="primary" (click)="uploadFiles()" [disabled]="uploading">
-    {{ uploading ? 'Uploading...' : 'Upload' }}
-  </button>
+  <!-- Controls -->
+  <div class="flex flex-col gap-3 mb-4">
+    <div class="flex items-center gap-3 flex-wrap">
+      <input type="file" (change)="onFilesSelected($event)" multiple />
+      <button mat-raised-button color="primary"
+              (click)="uploadFiles()"
+              [disabled]="uploading || selectedFiles.length === 0">
+        {{ uploading ? 'Uploading...' : 'Upload' }}
+      </button>
+    </div>
 
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <!-- Dimension mode -->
+      <mat-form-field appearance="outline">
+        <mat-label>Dimension mode</mat-label>
+        <mat-select [(ngModel)]="dimensionMode">
+          <mat-option value="none">Keep original</mat-option>
+          <mat-option value="preset">Preset</mat-option>
+          <mat-option value="custom">Custom</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      @if (dimensionMode === 'preset') {
+        <mat-form-field appearance="outline">
+          <mat-label>Preset size</mat-label>
+          <mat-select [(ngModel)]="selectedPreset">
+            @for (p of dimensionPresets; track p) {
+              <mat-option [value]="p">{{ p }}</mat-option>
+            }
+          </mat-select>
+          <mat-hint>W x H (px)</mat-hint>
+        </mat-form-field>
+      }
+
+      @if (dimensionMode === 'custom') {
+        <mat-form-field appearance="outline">
+          <mat-label>Custom size (e.g., 1024 x 768)</mat-label>
+          <input matInput [(ngModel)]="customDimension" placeholder="W x H" />
+          @if (dimensionError) {
+            <mat-hint class="text-red-600">{{ dimensionError }}</mat-hint>
+          }
+        </mat-form-field>
+      }
+
+      <!-- Strategy -->
+      <mat-form-field appearance="outline">
+        <mat-label>Resize strategy</mat-label>
+        <mat-select [(ngModel)]="strategy">
+          <mat-option value="Fit">Fit (no crop)</mat-option>
+          <mat-option value="Pad">Pad to exact size</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Pad color -->
+      @if (strategy === 'Pad') {
+        <mat-form-field appearance="outline">
+          <mat-label>Pad color (hex)</mat-label>
+          <input matInput [(ngModel)]="padHex" placeholder="#FFFFFFFF" />
+          <mat-hint>#RRGGBB or #RRGGBBAA</mat-hint>
+        </mat-form-field>
+      }
+
+      <!-- Format mode -->
+      <mat-form-field appearance="outline">
+        <mat-label>Format mode</mat-label>
+        <mat-select [(ngModel)]="formatMode">
+          <mat-option value="Auto">Auto (recommended)</mat-option>
+          <mat-option value="KeepOriginal">Keep original</mat-option>
+          <mat-option value="ForceJpeg">Force JPEG</mat-option>
+          <mat-option value="ForcePng">Force PNG</mat-option>
+          <mat-option value="ForceWebp">Force WebP</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Table -->
   <table mat-table [dataSource]="uploadedImages" class="mt-4 min-w-full mat-elevation-z8">
 
-    <!-- Index Column -->
+    <!-- Index -->
     <ng-container matColumnDef="index">
       <th mat-header-cell *matHeaderCellDef>#</th>
       <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Name -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.fileName }}</td>
     </ng-container>
 
-    <!-- Preview Column -->
+    <!-- Preview -->
     <ng-container matColumnDef="preview">
       <th mat-header-cell *matHeaderCellDef>Preview</th>
       <td mat-cell *matCellDef="let element">
@@ -28,7 +103,7 @@
       </td>
     </ng-container>
 
-    <!-- URL Column -->
+    <!-- URL -->
     <ng-container matColumnDef="url">
       <th mat-header-cell *matHeaderCellDef>URL</th>
       <td mat-cell *matCellDef="let element">
@@ -36,7 +111,7 @@
       </td>
     </ng-container>
 
-    <!-- Progress Column -->
+    <!-- Progress -->
     <ng-container matColumnDef="progress">
       <th mat-header-cell *matHeaderCellDef>Progress</th>
       <td mat-cell *matCellDef="let element">
@@ -44,7 +119,7 @@
       </td>
     </ng-container>
 
-    <!-- Action Column -->
+    <!-- Action -->
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let element">
@@ -52,9 +127,10 @@
       </td>
     </ng-container>
 
-    <!-- Header and Row -->
+    <!-- Header and Rows -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
 </div>
+

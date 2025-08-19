@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Carousel, CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
+import { RouterLink } from '@angular/router';
 
 export interface CarouselItem {
   name: string;
@@ -14,7 +15,7 @@ export interface CarouselItem {
 @Component({
   selector: 'app-home-carousel',
   standalone: true,
-  imports: [CommonModule, CarouselModule, CardModule],
+  imports: [CommonModule, CarouselModule, CardModule, RouterLink],
   templateUrl: './home-carousel.component.html',
   styleUrls: ['./home-carousel.component.scss'],
 })

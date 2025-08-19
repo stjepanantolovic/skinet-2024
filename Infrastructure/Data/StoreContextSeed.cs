@@ -27,7 +27,7 @@ namespace Infrastructure.Data
             if (!context.Products.Any())
             {
                 var productsData = await File
-                    .ReadAllTextAsync(path + @"/Data/SeedData/products.json");
+                    .ReadAllTextAsync(path + @"/Data/SeedData/products_DFH.json");
 
                 var products = JsonSerializer.Deserialize<List<Product>>(productsData);
 

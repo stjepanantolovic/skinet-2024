@@ -16,6 +16,8 @@ export class ShopService {
 
   getProducts(shopParams: ShopParams) {
     let params = new HttpParams();
+    console.log("shopService.getProducts(shopParams: ShopParams) => ", shopParams)
+    console.log(shopParams)
     if (shopParams.brands.length > 0) {
       params = params.append('brands', shopParams.brands.join(','));
     }

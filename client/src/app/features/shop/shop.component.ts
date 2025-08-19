@@ -13,6 +13,7 @@ import { ShopParams } from '../../shared/models/shopParams';
 import { Pagination } from '../../shared/models/pagination';
 import { FormsModule } from '@angular/forms';
 import { EmptyStateComponent } from "../../shared/components/empty-state/empty-state.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -27,11 +28,12 @@ import { EmptyStateComponent } from "../../shared/components/empty-state/empty-s
     MatPaginator,
     FormsModule,
     EmptyStateComponent
-],
+  ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'
 })
 export class ShopComponent {
+  private activatedRoute = inject(ActivatedRoute);
   private shopService = inject(ShopService);
   private dialogService = inject(MatDialog);
   products?: Pagination<Product>;
@@ -50,7 +52,19 @@ export class ShopComponent {
     this.initializeShop();
   }
 
+  setInitialQueryParams() {
+    var initialType = this.activatedRoute.snapshot.queryParams['types'];
+    console.log("initialType", initialType);
+    if (initialType) {
+      if (initialType.toLowerCase() == 'furniture') {
+        this.shopParams.types.push('sofas', 'chairs');
+      } else {
+        this.shopParams.types.push(initialType);
+      }
 
+    }
+    console.log("setInitialQueryParams", this.shopParams);
+  }
 
   onSortChange(event: MatSelectionListChange) {
     const selectedOption = event.options[0];
@@ -63,6 +77,7 @@ export class ShopComponent {
   }
 
   initializeShop() {
+    this.setInitialQueryParams();
     this.shopService.getBrands();
     this.shopService.getTypes();
     this.getProducts();
@@ -74,6 +89,7 @@ export class ShopComponent {
   }
 
   getProducts() {
+    console.log("getProducts started with params", this.shopParams);
     this.shopService.getProducts(this.shopParams).subscribe({
       next: response =>
         this.products = response,
