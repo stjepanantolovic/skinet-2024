@@ -12,6 +12,7 @@ import { MatDivider, MatList, MatListItem, MatNavList } from '@angular/material/
 import { BusyService } from '../../core/services/busy.service';
 import { CartService } from '../../core/services/cart.service';
 import { AccountService } from '../../core/services/account.service';
+import { IsAdmin } from "../../shared/directives/is-admin";
 
 
 
@@ -24,8 +25,9 @@ import { AccountService } from '../../core/services/account.service';
     MatToolbar, MatSidenavContainer, MatSidenav, MatSidenavContent,
     MatListItem,
     MatNavList,
-    MatDivider
-    
+    MatDivider,
+    IsAdmin,
+    IsAdmin
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

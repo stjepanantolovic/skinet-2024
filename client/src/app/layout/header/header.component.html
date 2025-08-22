@@ -51,7 +51,8 @@
         <a routerLink="/shop" routerLinkActive="active">Shop</a>
         <a routerLink="/test-error" routerLinkActive="active">Test error</a>
         <a routerLink="/contact" routerLinkActive="active">Contact</a>
-         <a routerLink="/upload" routerLinkActive="active">Images</a>
+         <a *appIsAdmin routerLink="/upload" routerLinkActive="active">Images</a>
+         <a *appIsAdmin routerLink="/admin" routerLinkActive="active">Admin</a>
       </nav>
 
       <span class="flex-1"></span>

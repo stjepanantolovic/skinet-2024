@@ -17,6 +17,8 @@ import { OrderComponent } from './features/orders/order.component';
 import { OrderDetailComponent } from './features/orders/order-detail/order-detail.component';
 import { orderCompleteGuard } from './core/guards/order-complete-guard';
 import { ImageUploaderComponent } from './shared/components/image-uploader/image-uploader.component';
+import { AdminComponent } from './features/admin/admin.component';
+import { adminGuard } from './core/guards/admin-guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +35,6 @@ export const routes: Routes = [
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
   { path: 'upload', component: ImageUploaderComponent },
-  
+{  path: 'admin', component: AdminComponent, canActivate: [authGuard, adminGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
