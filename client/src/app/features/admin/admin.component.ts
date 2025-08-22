@@ -12,6 +12,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterLink } from '@angular/router';
 import { DialogService } from '../../core/services/dialog.service';
+import { ImageUploaderComponent } from "../../shared/components/image-uploader/image-uploader.component";
+import { TestErrorComponent } from "../test-error/test-error.component";
 
 
 
@@ -29,8 +31,10 @@ import { DialogService } from '../../core/services/dialog.service';
     MatTooltipModule,
     MatTabsModule,
     MatButtonModule,
-    RouterLink
-  ],
+    RouterLink,
+    ImageUploaderComponent,
+    TestErrorComponent
+],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

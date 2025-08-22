@@ -31,10 +31,8 @@ export const routes: Routes = [
   { path: 'orders/:id', component: OrderDetailComponent, canActivate: [authGuard] },
   { path: 'account/login', component: LoginComponent },
   { path: 'account/register', component: RegisterComponent },
-  { path: 'test-error', component: TestErrorComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
-  { path: 'upload', component: ImageUploaderComponent },
 {  path: 'admin', component: AdminComponent, canActivate: [authGuard, adminGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
