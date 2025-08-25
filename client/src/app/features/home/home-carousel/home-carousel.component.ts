@@ -26,8 +26,8 @@ export class HomeCarouselComponent implements OnInit, OnDestroy {
     { name: 'Doors', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755461156/images/images/KSK402_20250817200554.jpg' },
     { name: 'Windows', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755468430/images/images/alustolarija_optimized_20250817220710.webp' },
     { name: 'Kitchens', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755458852/images/images/Whitekitchen-3_20250817192729.png' },
-    { name: 'Furniture', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755461027/images/images/STV119-Room-2_20250817200344.png' },
-    { name: 'AI Designer', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755467011/images/images/AIDesignHomes_stretch_480x270_20250817214330.webp' },
+    { name: 'Furniture', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755461027/images/images/STV119-Room-2_20250817200344.png' }
+    // { name: 'AI Designer', image: 'https://res.cloudinary.com/dct9az8d1/image/upload/v1755467011/images/images/AIDesignHomes_stretch_480x270_20250817214330.webp' },
   ];
 
   // Desktop defaults; smaller screens handled by responsiveOptions
